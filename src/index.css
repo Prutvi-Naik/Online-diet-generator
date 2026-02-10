@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap');
+@import "tailwindcss";
+
+/* DIETGEN DESIGN SYSTEM v1.0
+  Colors: Vitality Green (#2D6A4F), Motivation Orange (#FF8C42)
+  Typography: Montserrat (Headings), Inter (Body)
+*/
+
+@layer theme {
+  :root {
+    --vitality-green: #2D6A4F;
+    --deep-emerald: #1B4332;
+    --fresh-mint: #D8F3DC;
+    --motivation-orange: #FF8C42;
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply transition-colors duration-300 ease-in-out;
+  }
+  
+  body {
+    @apply bg-[#F4F9F6] text-[#1B4332] font-['Inter'] antialiased selection:bg-[#D8F3DC] selection:text-[#2D6A4F];
+    background-image: radial-gradient(circle at 2px 2px, rgba(45,106,79,0.05) 1px, transparent 0);
+    background-size: 40px 40px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-['Montserrat'] font-extrabold tracking-tight text-[#1B4332];
+  }
+
+  /* Custom Scrollbar for Nutri-Tech Aesthetic */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-[#2D6A4F]/20 rounded-full hover:bg-[#2D6A4F]/40;
+  }
+}
+
+@layer utilities {
+  /* High-Resolution Glassmorphism */
+  .glass-module {
+    @apply bg-white/70 backdrop-blur-2xl border border-white/60 shadow-[0_20px_50px_rgba(45,106,79,0.08)] rounded-[24px];
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5);
+  }
+
+  .perspective-2000 {
+    perspective: 2000px;
+  }
+
+  .text-gradient-green {
+    @apply bg-gradient-to-br from-[#2D6A4F] to-[#1B4332] bg-clip-text text-transparent;
+  }
+
+  /* Premium Button Shimmer */
+  @keyframes shimmer-slide {
+    0% { transform: translateX(-150%) skewX(-15deg); }
+    100% { transform: translateX(150%) skewX(-15deg); }
+  }
+
+  .animate-shimmer-fast {
+    animation: shimmer-slide 2s infinite ease-in-out;
+  }
+
+  /* Floating Animation for 3D Elements */
+  @keyframes float-ui {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+  }
+
+  .animate-float-ui {
+    animation: float-ui 5s ease-in-out infinite;
+  }
+
+  /* Progress Bar Glow */
+  .progress-glow {
+    box-shadow: 0 0 15px rgba(255, 140, 66, 0.4);
+  }
+
+  /* 3D Tilt Utilities */
+  .tilt-card {
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
+  }
+  .tilt-card:hover {
+    transform: rotateX(2deg) rotateY(-2deg) scale(1.01);
+  }
+}
+
+/* Print Optimization for Diet Charts */
+@media print {
+  .no-print { display: none !important; }
+  .glass-module { 
+    @apply bg-white border border-gray-200 shadow-none;
+    backdrop-filter: none;
+  }
+  body { background: white; }
+}
